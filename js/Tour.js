@@ -9,6 +9,28 @@ AFRAME.registerComponent("tour", {
     this.cameraEl = document.querySelector("#camera");
     this.createCards();
   },
+  update: function() {
+    window.addEventListener("keydown", e => {
+      if (e.key === "ArrowUp") {
+        if (
+          (this.data.zoomAspectRatio <= 10 && this.data.state === "view") ||
+          (this.data.zoomAspectRatio <= 10 && this.data.state === "change-view")
+        ) {
+          this.data.zoomAspectRatio += 0.002;
+          this.cameraEl.setAttribute("zoom", this.data.zoomAspectRatio);
+        }
+      }
+      if (e.key === "ArrowDown") {
+        if (
+          (this.data.zoomAspectRatio > 1 && this.data.state === "view") ||
+          (this.data.zoomAspectRatio > 1 && this.data.state === "change-view")
+        ) {
+          this.data.zoomAspectRatio -= 0.002;
+          this.cameraEl.setAttribute("zoom", this.data.zoomAspectRatio);
+        }
+      }
+    });
+  },
   tick: function() {
     const { state } = this.el.getAttribute("tour");
 
@@ -22,7 +44,16 @@ AFRAME.registerComponent("tour", {
       el.setAttribute("visible", false);
     });
   },
+  showView: function() {
+    const { selectedCard } = this.data;
+    const skyEl = document.querySelector("#main-container");
+    skyEl.setAttribute("material", {
+      src: `./assets/360_images/${selectedCard}/place-0.jpg`,
+      color: "#fff"
+    });
+  },
   createCards: function() {
+    
     const thumbNailsRef = [
       {
         id: "taj-mahal",
@@ -56,6 +87,7 @@ AFRAME.registerComponent("tour", {
 
       // Border Element
       const borderEl = this.createBorder(position, item.id);
+
       // Thubnail Element
       const thumbNail = this.createThumbNail(item);
       borderEl.appendChild(thumbNail);
@@ -109,35 +141,6 @@ AFRAME.registerComponent("tour", {
     entityEl.setAttribute("position", elPosition);
     entityEl.setAttribute("visible", true);
     return entityEl;
-  },
-  showView: function() {
-    const { selectedCard } = this.data;
-    const skyEl = document.querySelector("#main-container");
-    skyEl.setAttribute("material", {
-      src: `./assets/360_images/${selectedCard}/place-0.jpg`,
-      color: "#fff"
-    });
-  },
-  update: function() {
-    window.addEventListener("keydown", e => {
-      if (e.key === "ArrowUp") {
-        if (
-          (this.data.zoomAspectRatio <= 10 && this.data.state === "view") ||
-          (this.data.zoomAspectRatio <= 10 && this.data.state === "change-view")
-        ) {
-          this.data.zoomAspectRatio += 0.002;
-          this.cameraEl.setAttribute("zoom", this.data.zoomAspectRatio);
-        }
-      }
-      if (e.key === "ArrowDown") {
-        if (
-          (this.data.zoomAspectRatio > 1 && this.data.state === "view") ||
-          (this.data.zoomAspectRatio > 1 && this.data.state === "change-view")
-        ) {
-          this.data.zoomAspectRatio -= 0.002;
-          this.cameraEl.setAttribute("zoom", this.data.zoomAspectRatio);
-        }
-      }
-    });
-  }
+  }, 
+  
 });

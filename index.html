@@ -7,28 +7,19 @@
     <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
     <script src="js/CursorEvents.js"></script>
     <script src="js/Tour.js"></script>
-    <script src="js/MorePlaces.js"></script>
+    <script src="js/SideView.js"></script>
   </head>
   <body>
     <a-scene id="main-scene">
-      <a-assets id="assets-manager">
-        <a-asset-item
-          id="earth"
-          src="./assets/models/earth/scene.gltf"
-        ></a-asset-item>
-        <img id="bg" src="assets/bg.jpg">
-
-      </a-assets>
-
-      <a-sky id="main-container"  radius="5000"color="#98DAFC" ></a-sky>
+      <a-sky id="main-container" radius="5000" color="#98DAFC"></a-sky>
 
       <!-- Places Container -->
       <a-entity id="places-container" cursor-listener tour></a-entity>
 
-      <!-- More Places Contaier -->
+      <!-- Different Side View of the Places -->
       <a-entity
-        id="more-places-container"
-        show-more-places
+        id="side-view-container"
+        place-side-view
         cursor-listener
       ></a-entity>
 
@@ -46,21 +37,6 @@
             text="font: dejavu; align: center; width: 1; color: #0F184E; value: Travel Around The World"
           ></a-entity>
         </a-entity>
-
-        <!-- App Logo -->
-        <!-- <a-entity
-          id="app-logo"
-          gltf-model="#earth"
-          position="1.25 0.78 -1"
-          scale="-0.00025  -0.00025 -0.00025"
-          animation="property: rotation; to: 0 360 0;  loop: true; dur: 10000;easing:linear;"
-        ></a-entity> -->
-
-        <!--Background-->
-        <a-entity>
-          
-        </a-entity>
-
 
         <!-- CURSOR -->
         <a-entity
