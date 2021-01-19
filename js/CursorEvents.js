@@ -50,6 +50,7 @@ AFRAME.registerComponent("cursor-listener", {
 
     const { selectedItemId } = placesContainer.getAttribute("cursor-listener");
 
+    //Keeping all the images as id of the images with .jpg extension
     const sideViewPlacesId = ["place-1", "place-2", "place-3", "place-4"];
 
     if (sideViewPlacesId.includes(id)) {
@@ -57,11 +58,15 @@ AFRAME.registerComponent("cursor-listener", {
       placesContainer.setAttribute("tour", {
         state: "change-view"
       });
+
       const skyEl = document.querySelector("#main-container");
+      
+      //Set the 360 degree image to the sky element.
       skyEl.setAttribute("material", {
         src: `./assets/360_images/${selectedItemId}/${id}.jpg`,
         color: "#fff"
       });
+     
     }
   },
   handleMouseEnterEvents: function() {

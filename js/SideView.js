@@ -35,6 +35,7 @@ AFRAME.registerComponent("place-side-view", {
   createPlaceThumbNail: function(position, id) {
     const entityEl = document.createElement("a-entity");
     entityEl.setAttribute("visible", true);
+    
     entityEl.setAttribute("id", `place-${id}`);
 
     entityEl.setAttribute("geometry", {

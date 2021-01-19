@@ -46,7 +46,10 @@ AFRAME.registerComponent("tour", {
   },
   showView: function() {
     const { selectedCard } = this.data;
+
+    //Set the 360 degree image to the sky element.
     const skyEl = document.querySelector("#main-container");
+
     skyEl.setAttribute("material", {
       src: `./assets/360_images/${selectedCard}/place-0.jpg`,
       color: "#fff"
@@ -69,7 +72,7 @@ AFRAME.registerComponent("tour", {
       {
         id: "eiffel-tower",
         title: "Eiffel Tower",
-        url: "./assets/thumbnails/eiffel_tower.png"
+        url: "./assets/thumbnails/eiffel_tower.jpg"
       },
       {
         id: "new-york-city",
