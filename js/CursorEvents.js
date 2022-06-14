@@ -8,7 +8,7 @@ AFRAME.registerComponent("cursor-listener", {
     this.handleMouseLeaveEvents();
   },
   handleClickEvents: function() {
-    //  Click Events
+    //  Eventos de clic
     this.el.addEventListener("click", evt => {
       const placesContainer = document.querySelector("#places-container");
 
@@ -50,7 +50,7 @@ AFRAME.registerComponent("cursor-listener", {
 
     const { selectedItemId } = placesContainer.getAttribute("cursor-listener");
 
-    //Keeping all the images as id of the images with .jpg extension
+    // Mantener todas las imágenes con el ID de las imágenes más la extensión .jpg
     const sideViewPlacesId = ["place-1", "place-2", "place-3", "place-4"];
 
     if (sideViewPlacesId.includes(id)) {
@@ -61,7 +61,7 @@ AFRAME.registerComponent("cursor-listener", {
 
       const skyEl = document.querySelector("#main-container");
       
-      //Set the 360 degree image to the sky element.
+      // Establecer la imagen de 360 grados al elemento del cielo.
       skyEl.setAttribute("material", {
         src: `./assets/360_images/${selectedItemId}/${id}.jpg`,
         color: "#fff"
@@ -70,7 +70,7 @@ AFRAME.registerComponent("cursor-listener", {
     }
   },
   handleMouseEnterEvents: function() {
-    // Mouse Enter Events
+    // Eventos 'mouseenter' del cursor.
     this.el.addEventListener("mouseenter", () => {
       const placeContainer = document.querySelector("#places-container");
       const { state } = placeContainer.getAttribute("tour");
@@ -94,7 +94,7 @@ AFRAME.registerComponent("cursor-listener", {
     }
   },
   handleMouseLeaveEvents: function() {
-    // Mouse Leave Events
+    // Eventos 'mouseleave' del cursor.
     this.el.addEventListener("mouseleave", () => {
       const placesContainer = document.querySelector("#places-container");
       const { state } = placesContainer.getAttribute("tour");
